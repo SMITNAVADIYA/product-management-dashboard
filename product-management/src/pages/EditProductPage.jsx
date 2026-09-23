@@ -2,9 +2,8 @@ import { useMemo } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import ErrorState from "../components/common/ErrorState";
 import LoadingState from "../components/common/LoadingState";
-
+import toast from "react-hot-toast";
 import ProductForm from "../components/products/ProductForm";
-
 import { useProducts } from "../hooks/useProducts";
 
 function EditProductPage() {
@@ -54,9 +53,7 @@ function EditProductPage() {
 
   const handleSubmit = async (data) => {
     try {
-      // Simulate API request.
       await new Promise((resolve) => setTimeout(resolve, 500));
-
       dispatch({
         type: "UPDATE_PRODUCT",
         payload: {
@@ -64,7 +61,7 @@ function EditProductPage() {
           id: product.id,
         },
       });
-
+      toast.success("Product updated successfully!");
       navigate("/products", {
         replace: true,
       });
