@@ -1,8 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import ProductForm from "../components/products/ProductForm";
-
+import toast from "react-hot-toast";
 import { useProducts } from "../hooks/useProducts";
-
 import { generateProductId } from "../utils/productHelpers";
 
 function AddProductPage() {
@@ -22,6 +21,8 @@ function AddProductPage() {
         type: "ADD_PRODUCT",
         payload: newProduct,
       });
+
+      toast.success("Product added successfully!");
 
       navigate("/products", {
         replace: true,

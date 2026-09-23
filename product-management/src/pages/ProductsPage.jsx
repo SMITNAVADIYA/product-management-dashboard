@@ -11,6 +11,7 @@ import { useProducts } from "../hooks/useProducts";
 import DeleteProductModal from "./DeleteProductModel";
 import { getProductStatus } from "../utils/productHelpers";
 import Header from "../components/common/Header";
+import toast from "react-hot-toast";
 
 function ProductsPage() {
   const { products, total, loading, error, dispatch, retryLoadProducts } =
@@ -153,6 +154,8 @@ function ProductsPage() {
         type: "DELETE_PRODUCT",
         payload: deleteProduct.id,
       });
+
+      toast.success("Product deleted successfully!");
 
       setDeleteProduct(null);
     } catch (error) {
